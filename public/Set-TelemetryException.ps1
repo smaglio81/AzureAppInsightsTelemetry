@@ -74,18 +74,18 @@ function Set-TelemetryException
         [switch] $NoStatus
     )
 
-    if (Get-GitHubConfiguration -Name DisableTelemetry)
+    if($null -eq $ClientWrapper.Client) {
+        Write-Log -Message "ClientWrapper.Client is null. ClientWrapper should be regenerated using Get-TelemetryClient." -Level Error
+        return
+    }
+
+    if ($ClientWrapper.DisableTelemetry)
     {
         Write-Log -Message "Telemetry has been disabled via configuration. Skipping reporting exception." -Level Verbose
         return
     }
 
     Write-InvocationLog -ExcludeParameter @('Exception', 'Properties', 'NoFlush')
-
-    if($null -eq $ClientWrapper.Client) {
-        Write-Log -Message "ClientWrapper.Client is null. ClientWrapper should be regenerated using Get-TelemetryClient." -Level Error
-        return
-    }
 
     try
     {

@@ -11,8 +11,8 @@ Describe -Tag "Integration","Public" -Name "Get-TelemetryClient" {
 	InModuleScope "AzureAppInsightsTelemetry" {
 
 		It "Can Create Client" {
-			$client = Get-TelemetryClient -ApplicationInsightsKey 8b2c1873-3e6b-4c16-abe3-240722e1ae86
-			$client.Client | Should -Not -Be $null
+			$wrapper = Get-TelemetryClient -ApplicationInsightsKey 8b2c1873-3e6b-4c16-abe3-240722e1ae86
+			$wrapper.Client | Should -Not -Be $null
 		}
 
 	}

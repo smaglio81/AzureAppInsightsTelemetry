@@ -69,6 +69,11 @@ function Set-TelemetryEvent
         [switch] $NoStatus
     )
 
+    if($null -eq $ClientWrapper.Client) {
+        Write-Log -Message "ClientWrapper.Client is null. ClientWrapper should be regenerated using Get-TelemetryClient." -Level Error
+        return
+    }
+
     if ($global:AppInsightsTelemeteryUcsb.DisableTelemetry)
     {
         Write-Log -Message "Telemetry has been disabled via configuration. Skipping reporting event [$EventName]." -Level Verbose
@@ -76,11 +81,6 @@ function Set-TelemetryEvent
     }
 
     Write-InvocationLog -ExcludeParameter @('Properties', 'Metrics')
-
-    if($null -eq $ClientWrapper.Client) {
-        Write-Log -Message "ClientWrapper.Client is null. ClientWrapper should be regenerated using Get-TelemetryClient." -Level Error
-        return
-    }
 
     try
     {

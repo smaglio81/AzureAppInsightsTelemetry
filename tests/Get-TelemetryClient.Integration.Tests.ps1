@@ -1,6 +1,3 @@
-# http://stackoverflow.com/questions/1183183/path-of-currently-executing-powershell-script
-$root = Split-Path $MyInvocation.MyCommand.Path -Parent;
-
 if($null -eq $global:AzureAppInsightsTelemetryInvokePester  -or $global:AzureAppInsightsTelemetryInvokePester -eq $false) {
 	Import-Module AzureAppInsightsTelemetry -Force
 	Import-Module Pester

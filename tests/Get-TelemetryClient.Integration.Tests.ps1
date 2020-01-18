@@ -3,7 +3,7 @@ if($null -eq $global:AzureAppInsightsTelemetryInvokePester  -or $global:AzureApp
 	Import-Module Pester
 }
 
-Describe -Tag "Unit","Public" -Name "Get-TelemetryClient" {
+Describe -Tag "Integration","Public" -Name "Get-TelemetryClient" {
 
 	BeforeAll {
 	}

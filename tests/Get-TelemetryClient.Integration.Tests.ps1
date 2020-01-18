@@ -21,7 +21,6 @@ Describe -Tag "Unit","Public" -Name "Get-TelemetryClient" {
 	}
 
 	AfterAll {
-		$global:AzureAppInsightsTelemetry.Variable1 = $originalVariable1;
 	}
 
 }
